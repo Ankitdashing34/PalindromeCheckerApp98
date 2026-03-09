@@ -2,15 +2,19 @@ import java.util.Stack;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-// Strategy Interface
-interface PalindromeStrategy {
-    boolean isPalindrome(String text);
-}
+public class PalindromeCheckerApp {
 
-// Stack Strategy
-class StackStrategy implements PalindromeStrategy {
+    // Method 1: Reverse String
+    public static boolean reverseMethod(String text) {
+        String reversed = "";
+        for (int i = text.length() - 1; i >= 0; i--) {
+            reversed += text.charAt(i);
+        }
+        return text.equals(reversed);
+    }
 
-    public boolean isPalindrome(String text) {
+    // Method 2: Stack
+    public static boolean stackMethod(String text) {
         Stack<Character> stack = new Stack<>();
 
         for (char c : text.toCharArray()) {
@@ -24,13 +28,9 @@ class StackStrategy implements PalindromeStrategy {
 
         return text.equals(reversed);
     }
-}
 
-// Deque Strategy
-class DequeStrategy implements PalindromeStrategy {
-
-    public boolean isPalindrome(String text) {
-
+    // Method 3: Deque
+    public static boolean dequeMethod(String text) {
         Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : text.toCharArray()) {
@@ -42,44 +42,32 @@ class DequeStrategy implements PalindromeStrategy {
                 return false;
             }
         }
-
         return true;
     }
-}
-
-// Context Class
-class PalindromeChecker {
-
-    private PalindromeStrategy strategy;
-
-    public PalindromeChecker(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean check(String text) {
-        return strategy.isPalindrome(text);
-    }
-}
-
-// Main Application
-public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String text = "level";
+        String text = "racecar";
 
-        // Choose strategy
-        PalindromeStrategy strategy = new StackStrategy();
-        // PalindromeStrategy strategy = new DequeStrategy();
+        // Reverse Method
+        long start1 = System.nanoTime();
+        reverseMethod(text);
+        long end1 = System.nanoTime();
 
-        PalindromeChecker checker = new PalindromeChecker(strategy);
+        // Stack Method
+        long start2 = System.nanoTime();
+        stackMethod(text);
+        long end2 = System.nanoTime();
 
-        boolean result = checker.check(text);
+        // Deque Method
+        long start3 = System.nanoTime();
+        dequeMethod(text);
+        long end3 = System.nanoTime();
 
-        if (result) {
-            System.out.println("\"" + text + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + text + "\" is not a palindrome.");
-        }
+        // Display results
+        System.out.println("Performance Comparison (nanoseconds)");
+        System.out.println("Reverse Method: " + (end1 - start1));
+        System.out.println("Stack Method:   " + (end2 - start2));
+        System.out.println("Deque Method:   " + (end3 - start3));
     }
 }
