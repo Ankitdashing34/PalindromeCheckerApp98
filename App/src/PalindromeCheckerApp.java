@@ -1,34 +1,36 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        // Hardcoded string
-        String text = "HELLO";
+                // Hardcoded string
+                String text = "level";
 
-        // Create Queue and Stack
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+                // Create deque
+                Deque<Character> deque = new ArrayDeque<>();
 
-        // Enqueue and Push characters
-        for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            queue.add(ch);   // FIFO
-            stack.push(ch);  // LIFO
+                // Insert characters into deque
+                for (int i = 0; i < text.length(); i++) {
+                    deque.addLast(text.charAt(i));
+                }
+
+                boolean isPalindrome = true;
+
+                // Compare front and rear characters
+                while (deque.size() > 1) {
+                    char first = deque.removeFirst();
+                    char last = deque.removeLast();
+
+                    if (first != last) {
+                        isPalindrome = false;
+                        break;
+                    }
+                }
+
+                // Print result
+                if (isPalindrome) {
+                    System.out.println("The string \"" + text + "\" is a palindrome.");
+                } else {
+                    System.out.println("The string \"" + text + "\" is not a palindrome.");
+                }
+            }
         }
-
-        // Display Queue (FIFO order)
-        System.out.print("Queue Output (FIFO): ");
-        while (!queue.isEmpty()) {
-            System.out.print(queue.remove() + " ");
-        }
-
-        System.out.println();
-
-        // Display Stack (LIFO order)
-        System.out.print("Stack Output (LIFO): ");
-        while (!stack.isEmpty()) {
-            System.out.print(stack.pop() + " ");
-        }
-    }
-}
