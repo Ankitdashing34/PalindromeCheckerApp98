@@ -1,16 +1,24 @@
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
-        // Application details
-        String appName = "My Application";
-        String appVersion = "Version 1.0";
+                // Hardcoded string
+                String text = "madam";
 
-        // Display welcome message
-        System.out.println("Welcome to " + appName);
-        System.out.println(appVersion);
+                // Reverse the string
+                String reversed = "";
+                for (int i = text.length() - 1; i >= 0; i--) {
+                    reversed += text.charAt(i);
+                }
 
-        // Continue to next process or exit
-        System.out.println("Application started successfully.");
-    }
-}
+                // Check if palindrome
+                if (text.equals(reversed)) {
+                    System.out.println("The string \"" + text + "\" is a palindrome.");
+                } else {
+                    System.out.println("The string \"" + text + "\" is not a palindrome.");
+                }
+
+                System.out.println("Program finished.");
+            }
+        }
+
 
