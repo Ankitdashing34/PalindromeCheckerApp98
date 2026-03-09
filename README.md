@@ -30,23 +30,6 @@ ApplicationEntry/
 └── README.md
 ```
 
-## Java Code
-
-```java
-public class ApplicationEntry {
-
-    public static void main(String[] args) {
-
-        String appName = "My Application";
-        String appVersion = "Version 1.0";
-
-        System.out.println("Welcome to " + appName);
-        System.out.println(appVersion);
-        System.out.println("Application started successfully.");
-    }
-}
-```
-
 ## How to Run the Project
 
 1. Install Java JDK.
@@ -72,3 +55,9 @@ Version 1.0
 Application started successfully.
 ```
 
+##Check the string using data structure
+
+//Program starts
+//Hardcoded string is checked
+//Result is printed
+//Program exits
