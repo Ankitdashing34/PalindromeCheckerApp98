@@ -1,34 +1,47 @@
 public class PalindromeCheckerApp {
-        public static void main(String[] args) {
+                // Method to check if a string is a palindrome
+                public boolean checkPalindrome(String text) {
 
-            // Hardcoded string
-            String text = "A man a plan a canal Panama";
+                    // Normalize string (ignore case and spaces)
+                    String normalized = text.replaceAll("\\s+", "").toLowerCase();
 
-            // Normalize string: remove spaces and convert to lowercase
-            String normalized = text.replaceAll("\\s+", "").toLowerCase();
+                    // Convert to character array
+                    char[] chars = normalized.toCharArray();
 
-            // Convert to character array
-            char[] chars = normalized.toCharArray();
+                    int start = 0;
+                    int end = chars.length - 1;
 
-            int start = 0;
-            int end = chars.length - 1;
-            boolean isPalindrome = true;
+                    // Compare characters from both ends
+                    while (start < end) {
+                        if (chars[start] != chars[end]) {
+                            return false;
+                        }
+                        start++;
+                        end--;
+                    }
 
-            // Compare characters from both ends
-            while (start < end) {
-                if (chars[start] != chars[end]) {
-                    isPalindrome = false;
-                    break;
+                    return true;
                 }
-                start++;
-                end--;
             }
 
-            // Print result
-            if (isPalindrome) {
-                System.out.println("\"" + text + "\" is a palindrome (ignoring spaces and case).");
-            } else {
-                System.out.println("\"" + text + "\" is not a palindrome.");
+// Main application class
+            public class PalindromeServiceApp {
+
+                public static void main(String[] args) {
+
+                    String text = "Racecar";
+
+                    // Create object of PalindromeChecker
+                    PalindromeChecker checker = new PalindromeChecker();
+
+                    // Call method
+                    boolean result = checker.checkPalindrome(text);
+
+                    // Print result
+                    if (result) {
+                        System.out.println("\"" + text + "\" is a palindrome.");
+                    } else {
+                        System.out.println("\"" + text + "\" is not a palindrome.");
+                    }
+                }
             }
-        }
-    }
